@@ -7,13 +7,13 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('english', '0005_auto_20171219_0244'),
+        ('english', '0001_initial'),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='sphere',
-            name='parent',
-            field=models.ForeignKey(to='english.Sphere', null=True),
+            model_name='user_word',
+            name='learned_time',
+            field=models.DateTimeField(auto_now_add=True),
         ),
     ]

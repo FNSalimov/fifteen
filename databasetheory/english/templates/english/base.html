@@ -37,6 +37,7 @@
 							{% if username %}
 								<li><a href="{% url 'english:add' %}">Add word</a></li>
 								<li><a href="{% url 'english:logout' %}">Logout</a></li>
+								<li><a href="{% url 'english:profile' %}">Profile</a></li>
 							{% else %}
 								<li><a href="{% url 'english:reg' %}">Register</a></li>
 								<li><a href="{% url 'english:log' %}">Login</a></li>

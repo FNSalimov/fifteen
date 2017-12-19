@@ -50,10 +50,32 @@ def test(request):
     jsonStr = json.dumps([w.toJSON() for w in five_words])
     return HttpResponse(jsonStr, content_type='application/json')
 
+def testt(request):
+    if request.GET.get('learned') == 'true' and request.GET.get('word'):
+        a = User_Word.objects.filter(user_id=auth.get_user(request),
+                                word_id=Word.objects.get(title=request.GET.get('word')))
+        if a:
+            print('no')
+        else:
+            User_Word.objects.create(user_id=auth.get_user(request),
+                                 word_id=Word.objects.get(title=request.GET.get('word')))
+    list_of_words = list(Word.objects.all())
+    random_word = list_of_words[random.randint(1, len(list_of_words) - 1)]
+    jsonStr = json.dumps(random_word.toJSON())
+    return HttpResponse(jsonStr, content_type='application/json')
+
+def profile(request):
+    my_words = []
+    words_learned = []
+    if request.user.is_authenticated():
+        my_words = list(Word.objects.filter(added_by=auth.get_user(request)))
+        words_learned = list(User_Word.objects.filter(user_id=auth.get_user(request)).order_by('learned_time'))
+    return render(request, 'english/profile.html', {'username': auth.get_user(request).username,
+                                                    'word_list': my_words,
+                                                    'words_learned': words_learned})
 
 def english(request):
     list_of_words = list(Word.objects.all())
-    print(len(list_of_words))
     five_words = []
     for i in range(5):
         random_number = random.randint(1, len(list_of_words) - 1)
@@ -71,14 +93,12 @@ def english(request):
     return render(request, 'english/english.html', {'russian_words': russian_words, 'english_words': english_words, 'test': test, 'username': auth.get_user(request).username})
 
 def index(request):
-    list_of_words = []
-    if request.user.is_authenticated():
-        list_of_words = list(Word.objects.filter(added_by=auth.get_user(request)))
-    spheres = Sphere.objects.all()
+    list_of_words = list(Word.objects.all())
     return render(request, 'english/index.html', {'username': auth.get_user(request).username,
-                                                'list_of_words': list_of_words,
-                                                'spheres': spheres,
-                                                'amount': len(list_of_words)})
+                                                'word_list': list_of_words
+                                                #'spheres': spheres,
+                                                #'amount': len(list_of_words)
+                                                })
 
 def add(request):
     if request.method == 'POST':

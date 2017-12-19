@@ -3,13 +3,13 @@
 {% block t_block %}
 	<link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="{% static 'english/css/english.css' %}">
-	<title>English</title>
+	<title>Profile</title>
 {% endblock t_block %}
 {% block content %}
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 words">
-				<h2> All the words </h2>
+				<h2> Words added by you </h2>
 				<table class="table table-bordered">
 					<tr>
 					<th>№</th>
@@ -20,7 +20,7 @@
 				    <th>Added by</th>
 				   </tr>
 				   {% for word in word_list %}
-				   		<tr><td>{{word.id}}</td>
+				   		<tr><td>{{ forloop.counter0 }}</td>
 				   		<td>{{word.title}}</td>
 				   		<td>{{word.defenition}}</td>
 				   		<td>{{word.added_time}}</td>
@@ -28,7 +28,24 @@
 				   		<td>{{word.added_by}}</td></tr>
 				   	{% endfor %}
 				</table>
-				
+				<h2> Words that you have learned </h2>
+				<table class="table table-bordered">
+					<tr>
+					<th>№</th>
+				    <th>Title</th>
+				    <th>Defenition</th>
+				    <th>Learned time</th>
+				    <th>Sphere</th>
+				   </tr>
+				   {% for word in words_learned %}
+				   		<tr><td>{{ forloop.counter0 }}</td>
+				   		<td>{{word.word_id.title}}</td>
+				   		<td>{{word.word_id.defenition}}</td>
+				   		<td>{{word.learned_time}}</td>
+				   		<td>{{word.word_id.belongs.title}}</td>
+				   		</tr>
+				   	{% endfor %}
+				</table>
 			</div>
 				
 		</div>

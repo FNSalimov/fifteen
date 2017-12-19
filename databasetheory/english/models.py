@@ -30,7 +30,7 @@ class Word(models.Model):
 class User_Word(models.Model):
 	user_id = models.ForeignKey(User)
 	word_id = models.ForeignKey(Word)
-	learned_time = models.DateTimeField()
+	learned_time = models.DateTimeField(auto_now_add=True)
 
 	def __str__(self):
 		return str(self.user_id)+'-'+str(self.word_id)

@@ -1,5 +1,12 @@
 jQuery('document').ready(function() {
 	var all_buttons = jQuery('button');
+	var word_amount = 0;
+	var all_words = []
+	function sendd(yes, word) {
+		jQuery.get({type:"GET", url:"/testt", dataType: 'json', data: {'word':word, 'learned': yes}, 
+														success:onAjaxSuccesss});
+	}
+	sendd(true, '')
 	var result = 0;
 	var ind_this;
 	var end;
@@ -29,10 +36,16 @@ jQuery('document').ready(function() {
 			}
 		if (end == 1) {
 			alert("Amount of wrong answers: " + result.toString());
-			jQuery.get({type:"GET", url:"/test", dataType: 'json', data: {}, success:onAjaxSuccess});
+			var answer = confirm('Do you want to play again?');
+			if (answer) {
+				all_words = []
+				word_amount = 0
+				sendd()
+			}
 		}
 	});
-	function onAjaxSuccess(data) {
+	
+	function start(all_words) {
 		result = 0;
 		var numbers = []
 		for (var i = 0; i < 10; i++) {
@@ -45,8 +58,8 @@ jQuery('document').ready(function() {
 			while (is_there(numbers, which))
 				which = Math.floor(Math.random()*5);
 			numbers.push(which);
-			jQuery(all_buttons[i]).attr("n", data[which]["Word"]["id"]);
-			jQuery(all_buttons[i]).text(data[which]["Word"]["into_russian"]);
+			jQuery(all_buttons[i]).attr("n", all_words[which]["Word"]["id"]);
+			jQuery(all_buttons[i]).text(all_words[which]["Word"]["into_russian"]);
 		}
 		numbers = [];
 		for (var i = 5; i < 10; i++) {
@@ -54,8 +67,21 @@ jQuery('document').ready(function() {
 			while (is_there(numbers, which))
 				which = Math.floor(Math.random()*5);
 			numbers.push(which);
-			jQuery(all_buttons[i]).attr("n", data[which]["Word"]["id"]);
-			jQuery(all_buttons[i]).text(data[which]["Word"]["into_english"]);
+			jQuery(all_buttons[i]).attr("n", all_words[which]["Word"]["id"]);
+			jQuery(all_buttons[i]).text(all_words[which]["Word"]["into_english"]);
+		}
+	}
+	function onAjaxSuccesss(data) {
+		var answer = confirm('Do you know word: ' + data['Word']['into_english']);
+		if (!answer) {
+			all_words.push(data)
+			word_amount += 1
+		}
+		if (word_amount < 5) {
+			sendd(answer, data['Word']['into_english'])
+		} else if (word_amount == 5) {
+			start(all_words)
+			
 		}
 	}
 	function is_there(numbers, a) {

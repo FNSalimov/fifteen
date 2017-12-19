@@ -4,6 +4,13 @@ h2 {
 	margin-left: 450px;
 }
 
+th {
+	font-size: 25px;
+}
+table {
+	color: white;
+	font-size: 15px;
+}
 .firstrow {
 	height: 200px;
 }
