@@ -1,0 +1,146 @@
+h2 {
+	font-family: 'Pacifico';
+	color: white;
+	margin-left: 450px;
+}
+
+.firstrow {
+	height: 200px;
+}
+
+.secondrow {
+	height: 300px;
+}
+	.secondrow img:hover {
+		box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 16px 20px 0 rgba(0,0,0,0.19);
+	}
+body, html {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+body {
+	background-image: url("../fonts/fon.jpg");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	background-color: #000207;
+}
+
+.first img {
+	height: 150px;
+	width: 70%;
+	margin-left: 20px;
+	margin-top: 20px;
+	transition: transform .8s;
+}
+
+.first img:hover {
+	transform: rotateY(180deg);
+}
+
+.second {
+	text-align: center;
+	padding-top: 50px;
+}
+	.title {
+		font-size: 40px;
+		font-family: 'Pacifico';
+		color: white;
+		margin-top: 300px;
+	}
+.third {
+	padding-top: 5%;
+	padding-left: 5%;
+	position: relative;
+}
+
+/*.menu {
+	background-color: grey;
+	border-radius: 15px;
+	height: 45px;
+}*/
+.icons {
+	position: absolute;
+	right: 10%;
+	top: 30%;
+}
+.menu ul li {
+		list-style: none;
+		display: inline;
+		margin-right: 20px;
+	}
+
+	.menu ul li:first-child {
+		border-right: 2px solid black;
+		padding-right: 25px;
+	}
+
+	.menu ul li > a {
+		color: white;
+		text-decoration: none;
+		cursor: pointer;
+		font-family: 'Pacifico';
+		font-size: 25px;
+		transition: all .8s;
+	}
+	
+	.menu ul li a:hover {
+		background-color: black;
+		border-radius: 20px;
+	}
+
+.firstblock {
+		height: 80%;
+		width: 70%;
+		margin-left: 10%;
+		margin-top: 5%;
+		border-radius: 15px;
+}
+
+.another {
+	margin-top: 33px;
+}
+
+.blue {
+	font-size: 30px;
+	color: white;
+	cursor: pointer;
+	position: absolute;
+	right: 50%;
+	top: 30%;
+	display: none;
+}
+
+.blue:hover {
+	color: red;
+}
+@media (max-width: 767px) {
+  .first img {
+  	height: 75px;
+  }
+  .title {
+  	font-size: 30px;
+  }
+  .menu ul li > a {
+  	font-size: 15px;
+  }
+  .secondrow {
+  	height: 230px;
+  }
+  .icons {
+  	top: 45%;
+  	display: none;
+  }
+  .menu ul li:first-child {
+  	border: none;
+  }
+  .blue {
+  	display: block !important;
+  }
+}
+
+@media (min-width: 767px) {
+	.icons {
+		display: block !important;
+	}
+}

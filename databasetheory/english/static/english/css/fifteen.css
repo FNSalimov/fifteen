@@ -1,0 +1,57 @@
+.timer {
+	width: 200px;
+	height: 50px;
+	margin: 0 auto;
+}
+
+.com {
+	width: 70px;
+	height: 70px;
+	background-color: green;
+	float: left;
+	text-align: center;
+	border: 1px solid black;
+	border-radius: 10px;
+	font-size: 35pt;
+	color: #ffeb3b;
+	margin: 1px;
+	cursor: pointer;
+}
+
+.desk {
+	height: 296px;
+	width: 296px;
+	border: 1px solid black;
+	background-color: #0e0e0e;
+	margin: 0 auto;
+	margin-top: 30px;
+}
+.sixteenth {
+	background-color: #0565ba;
+}
+
+span {
+	font-size: 25pt;
+	color: #ffeb3b;
+	vertical-align: middle;
+}
+
+.begin {
+	cursor: pointer;
+	margin: 0 auto;
+	margin-top: 10px;
+	border: 3px solid #74ca12;
+	border-radius: 15px;
+	background-color: green;
+	text-align: center;
+	font-size: 25pt;
+	color: #ffeb3b;
+	width: 100px;
+	height: 50px;
+
+}
+
+.begin:hover {
+	background-color: #202629;
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 16px 20px 0 rgba(0,0,0,0.19);
+}

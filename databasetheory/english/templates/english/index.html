@@ -1,0 +1,57 @@
+{% extends 'english/base.html' %}
+{% load staticfiles %}
+{% block t_block %}
+	<link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="{% static 'english/css/english.css' %}">
+	<title>English</title>
+{% endblock t_block %}
+{% block content %}
+	<div class="container">
+		<div class="row">
+			{% if username %}
+			  <h2> Words added by you: {{amount}} </h2>
+			 {% else %}
+			  <h2> Spheres and amount of words </h2>
+			{% endif %}
+			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 words">
+				{% if username %}
+					<div class="russian">
+						{% for word in list_of_words %}
+							<button n={{word.id}}>{{word.defenition}}</button><br>
+						{% endfor %}
+					</div>
+				{% else %}
+					<div class="russian">
+						{% for sphere in spheres %}
+							<button n={{word.id}}>{{sphere.title}}</button><br>
+						{% endfor %}
+					</div>
+				{% endif %}
+			</div>
+				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 words">
+					{% if username %}
+						<div class="english">
+							{% for word in list_of_words %}
+								<button n={{word.id}}>{{word.title}}</button><br>
+							{% endfor %}
+						</div>
+					{% else %}
+						<div class="english">
+							{% for sphere in spheres %}
+								<button n={{word.id}}>{{sphere.amount}}</button><br>
+							{% endfor %}
+						</div>
+					{% endif %}
+				</div>
+				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 words">
+				{% if username %}
+					<div class="russian">
+						{% for word in list_of_words %}
+							<button n={{word.id}}>{{word.belongs.title}}</button><br>
+						{% endfor %}
+					</div>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+{% endblock content %}
